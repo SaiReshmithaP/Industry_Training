@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends</title>
+    <script>
+        async function loadFriends() {
+            const response = await fetch('friends.json');
+            const data = await response.json();
+            const friendsList = document.getElementById('friendsList');
+
+            data.friends.forEach(friend => {
+                const friendDiv = document.createElement('div');
+                friendDiv.style = "border: 1px solid #ccc; padding: 10px; margin: 10px; background-color: #fff;";
+
+                friendDiv.innerHTML = `
+                    <h3 style="color: #5d4037;">${friend.name}</h3>
+                    <p><strong>Age:</strong> ${friend.age}</p>
+                    <p><strong>Hobbies:</strong> ${friend.hobbies.join(', ')}</p>
+                    <p><strong>Location:</strong> ${friend.location}</p>
+                `;
+
+                friendsList.appendChild(friendDiv);
+            });
+        }
+
+        window.onload = loadFriends;
+    </script>
+</head>
+<body style="background-image: url('https://www.shutterstock.com/image-photo/view-visakhapatnam-dolphins-nose-visakha-260nw-1095079250.jpg'); background-size: cover; background-repeat: no-repeat; background-attachment: fixed; color: #5d4037; text-align: center;">
+    <header style="background-color: #b9ff80; color: #df2424; padding: 20px 0;">
+        <h1>My Friends</h1>
+    </header>
+    <nav>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; justify-content: center; background-color: #ffe0b2;">
+            <li style="margin: 0 15px;"><a href="city.html" style="text-decoration: none; color: #5d4037; font-weight: bold;">Home</a></li>
+            <li style="margin: 0 15px;"><a href="places.html" style="text-decoration: none; color: #5d4037; font-weight: bold;">Places to Visit</a></li>
+            <li style="margin: 0 15px;"><a href="culture.html" style="text-decoration: none; color: #5d4037; font-weight: bold;">Culture & Food</a></li>
+            <li style="margin: 0 15px;"><a href="friends.html" style="text-decoration: none; color: #5d4037; font-weight: bold;">Friends</a></li>
+        </ul>
+    </nav>
+    <main style="padding: 20px; background-color: rgba(248, 233, 26, 0.8); margin: 20px auto; border-radius: 10px;">
+        <h2>Meet My Friends</h2>
+        <div id="friendsList" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <!-- Friends data will be loaded here -->
+        </div>
+    </main>
+    <footer style="background-color: #21f5f5; color: #f52020; padding: 10px 0;">
+        <p>&copy; 2024 Explore Vizag</p>
+    </footer>
+</body>
+</html>
